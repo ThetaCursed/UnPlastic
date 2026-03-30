@@ -1,0 +1,5 @@
+Copyright (c) 2026 ThetaCursed
+
+UnPlastic is freeware. You are permitted to use the hosted web application at https://thetacursed.github.io/unplastic/ for personal and commercial purposes.
+
+Redistribution, modification, reverse engineering, or offline hosting of the application files (HTML, CSS, JS, WASM) is not permitted without explicit permission from the author.

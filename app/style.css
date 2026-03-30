@@ -1,0 +1,751 @@
+/* style.css */
+:root {
+    --bg-color: #1c1c1e;
+    --sidebar-bg: #2c2c2e;
+    --text-color: #f2f2f7;
+    --text-secondary-color: #8e8e93;
+    --accent-color: #0a84ff;
+    --border-color: #3a3a3c;
+}
+
+/* --- Стилизация скроллбара под темную тему --- */
+/* Для Webkit-браузеров (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+    border: 2px solid var(--bg-color); /* Отступ от краев */
+}
+
+html {
+    /* Запрещаем горизонтальную прокрутку на уровне всего документа */
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-color); /* Устанавливаем фон для всего приложения */
+}
+
+/* --- Боковая панель --- */
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Необходимо для работы z-index */
+    z-index: 10; /* Устанавливаем высокий z-index, чтобы панель была сверху */
+}
+
+.app-header {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.app-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.app-slogan {
+    font-size: 14px;
+    margin: 4px 0 0 0;
+    color: var(--text-secondary-color);
+    font-weight: 500;
+}
+
+.controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между группами */
+}
+
+.reset-all-container {
+    /* Превращаем в flex-контейнер для управления вложенными элементами */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем по горизонтали */
+    gap: 10px; /* Отступ между кнопкой и ссылкой */
+}
+
+.controls-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Уменьшаем расстояние между ползунками */
+    background-color: var(--bg-color);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.group-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    color: var(--text-color);
+}
+
+.control {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Расстояние между лейблом и ползунком */
+}
+
+.control-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label-wrapper {
+    position: relative;
+    cursor: pointer;
+    /* Задаем минимальную ширину, чтобы блок не "прыгал" при смене текста */
+    min-width: 70px; 
+    display: inline-block;
+}
+
+.slider-label {
+    font-size: 14px;
+    color: var(--text-secondary-color);
+    transition: opacity 0.2s ease-in-out;
+    display: inline-block; /* Для корректной работы transition */
+}
+
+.control-value {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-color);
+}
+
+.reset-btn {
+    font-size: 14px; /* Увеличим размер для соответствия label */
+    color: var(--accent-color);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    /* Позиционируем кнопку поверх label */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: 500; /* Сделаем текст чуть жирнее */
+}
+
+/* При наведении на обертку... */
+.label-wrapper:hover .reset-btn {
+    /* ...показываем кнопку Reset */
+    opacity: 1;
+}
+
+.label-wrapper:hover .slider-label {
+    /* ...и скрываем оригинальное название */
+    opacity: 0;
+}
+
+input[type="number"].control-value {
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    width: 40px;
+    text-align: right;
+    padding: 0 4px;
+    -moz-appearance: textfield; /* Firefox */
+}
+
+input[type="number"].control-value::-webkit-outer-spin-button,
+input[type="number"].control-value::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"].control-value:focus {
+    background-color: var(--bg-color);
+    border: 1px solid var(--accent-color);
+    outline: none;
+}
+
+input[type="range"], input[type="number"].control-value {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+input[type="number"].control-value {
+    width: 40px;
+    height: auto;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--text-color);
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--text-color);
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+
+/* --- Основная область --- */
+.main-content {
+    flex-grow: 1;
+    display: flex; /* Используем flexbox для дочерних элементов */
+    flex-direction: column; /* Располагаем их вертикально */
+    gap: 20px; /* Отступ между зоной картинки и панелью кнопок */
+    padding: 20px;
+    z-index: 1; /* Устанавливаем z-index ниже, чем у sidebar */
+}
+
+.drop-zone {
+    width: 100%;
+    flex-grow: 1; /* Занимает все доступное пространство */
+    border: 2px dashed var(--border-color);
+    min-height: 0; /* Позволяет контейнеру сжиматься, если нужно */
+    border-radius: 12px;
+    position: relative; /* Для позиционирования #image-placeholder */
+    z-index: 1; /* Устанавливаем базовый z-index */
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.drop-zone.dragover {
+    border-color: var(--accent-color);
+    background-color: rgba(10, 132, 255, 0.1);
+}
+
+#image-placeholder {
+    position: absolute; /* Растягиваем на весь родительский .drop-zone */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+#preview-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Фильтры будут применяться здесь */
+}
+
+#upload-prompt {
+    text-align: center;
+    color: var(--text-secondary-color);
+}
+
+.upload-prompt-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 0 15px 0;
+}
+
+.separator-text {
+    font-weight: 400;
+    color: var(--text-secondary-color);
+    margin: 0 5px;
+}
+
+.button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #007aff;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Класс, который мы добавим через JS, когда фото загружено */
+.drop-zone.has-image {
+    border: none;
+    background-color: transparent;
+}
+
+#image-canvas {
+    display: block; /* Убирает лишние отступы снизу */
+    max-width: 100%;
+    max-height: 100%;
+    /* Добавим легкую тень вместо рамки, чтобы фото не сливалось с фоном */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.button.secondary {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.button.secondary:hover {
+    background-color: var(--border-color);
+}
+
+/* Активное состояние кнопки (когда зажата) */
+.button.secondary:active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.button.button-tertiary {
+    background-color: var(--bg-color);
+    color: var(--text-secondary-color);
+    border: 1px solid var(--border-color);
+    font-weight: 500;
+}
+
+.button.button-tertiary:hover {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+#reset-all-button {
+    width: 100%;
+}
+
+#image-canvas {
+    display: block;
+    max-width: none; /* Убираем ограничения, чтобы управлять размером через JS */
+    max-height: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform-origin: center; /* Центр масштабирования */
+    user-select: none;
+    z-index: -1; /* Помещаем холст под другие элементы */
+}
+
+/* Скрываем canvas по умолчанию, пока он не нужен */
+#image-canvas.hidden {
+    display: none !important;
+}
+
+
+/* Курсоры состояний */
+.space-pressed {
+    cursor: grab !important;
+}
+
+.is-dragging {
+    cursor: grabbing !important;
+}
+
+/* Состояние, когда нажат пробел (готовы хватать) */
+body.space-hold, 
+body.space-hold * {
+    cursor: grab !important;
+}
+
+/* Состояние, когда зажали кнопку мыши и тянем */
+body.is-grabbing, 
+body.is-grabbing * {
+    cursor: grabbing !important;
+}
+
+/* Добавьте это в ваш style.css */
+.main-content {
+    position: relative; /* Необходимо для позиционирования дочерних элементов */
+}
+
+.image-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 12px;
+    pointer-events: none; /* Чтобы клики проходили "сквозь" элемент на холст */
+}
+
+.image-info.hidden {
+    display: none;
+}
+
+/* --- Подпись автора --- */
+.author-credit.mobile-only {
+    display: none; /* Скрыт по умолчанию */
+    margin-top: 15px;
+    /* Применяем стили плашки, как на десктопе */
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-secondary-color);
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-size: 14px;
+    /* Новые правила для центрирования и подгонки ширины */
+    width: fit-content; /* Ширина по содержимому */
+    margin-left: auto;   /* Центрирование по горизонтали */
+    margin-right: auto;  /* Центрирование по горизонтали */
+}
+
+.author-credit.desktop-only {
+    position: absolute; /* Возвращаем абсолютное позиционирование для десктопа */
+    top: 30px;
+    right: 20px;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-secondary-color);
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-family: sans-serif;
+    font-size: 14px;
+    pointer-events: all;
+}
+
+
+
+.author-credit a {
+    color: var(--text-color); /* Основной цвет текста для ника */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+}
+
+.author-credit a:hover {
+    color: var(--accent-color); /* Цвет акцента при наведении */
+}
+
+/* --- Стили для модального окна с предупреждением --- */
+.warning-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.warning-overlay:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.warning-modal {
+    background-color: var(--sidebar-bg);
+    padding: 25px 30px;
+    border-radius: 12px;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    border: 1px solid var(--border-color);
+}
+
+.warning-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+/* --- Панель действий под изображением --- */
+.action-bar {
+    display: flex;
+    justify-content: space-between; /* Распределяем пространство между элементами */
+    gap: 15px;
+    flex-shrink: 0; /* Панель не должна сжиматься */
+    background-color: var(--sidebar-bg);
+    padding: 10px 15px; /* Уменьшаем вертикальные отступы */
+    border-top: 1px solid var(--border-color);
+    position: relative; /* Создаем новый stacking context */
+    z-index: 2; /* Убеждаемся, что панель всегда сверху */
+    /* Растягиваем панель на всю ширину main-content, игнорируя его padding */
+    margin: 0 -20px -20px -20px;
+}
+
+.action-bar-left {
+    /* Этот блок нужен, чтобы у space-between был левый элемент для отталкивания.
+       Он должен иметь ту же ширину, что и кнопка справа, для идеального центрирования. */
+    width: 150px; /* Примерная ширина кнопки Fullscreen с отступами */
+    visibility: hidden; /* Скрываем его, но он продолжает занимать место */
+}
+
+.action-bar-center {
+    /* Этот контейнер группирует центральные кнопки */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.action-bar.hidden {
+    display: none;
+}
+
+.action-bar .button {
+    padding: 8px 16px; /* Уменьшаем кнопки */
+    font-size: 14px;
+    border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* --- Адаптация для мобильных устройств --- */
+@media (max-width: 800px) {
+    .app-container {
+        /* Меняем направление на вертикальное и переворачиваем порядок,
+           чтобы main-content был сверху, а sidebar снизу */
+        flex-direction: column-reverse;
+        height: auto; /* Позволяем контейнеру расти по высоте */
+        min-height: 100vh; /* Занимаем как минимум весь экран */
+        gap: 0; /* Убираем отступ между main-content и sidebar */
+    }
+
+    /* Скрываем заголовок на мобильных, чтобы не занимать место */
+    .app-header {
+        display: none;
+    }
+
+    .main-content {
+        flex-grow: 1;
+        padding: 0; /* Убираем отступы, чтобы изображение прилегало к краям */
+        overflow: hidden; /* Прячем все, что выходит за пределы контейнера - это решит проблему с "щелями" */
+        gap: 10px;
+    }
+
+    .sidebar {
+        width: 100%; /* Панель на всю ширину */
+        height: auto;
+        border-right: none; /* Убираем боковую границу */
+        border-top: 1px solid var(--border-color); /* Добавляем верхнюю */
+        padding: 10px;
+        box-sizing: border-box; /* Чтобы padding не влиял на ширину */
+        /* Ограничиваем высоту и добавляем прокрутку, если нужно */
+        max-height: 45vh;
+        overflow-y: auto;
+    }
+
+    .controls-wrapper {
+        /* Располагаем группы ползунков в строку с переносом */
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .controls-group {
+        /* Группы будут занимать примерно половину ширины */
+        flex: 1 1 calc(50% - 5px); /* Точная ширина для двух колонок с учетом gap: 10px */
+        min-width: 140px; /* Минимальная ширина группы */
+        gap: 10px;
+        box-sizing: border-box; /* Включаем padding в расчет ширины - это ключ к решению! */
+    }
+
+    .reset-all-container {
+        /* Применяем те же правила, что и для .controls-group */
+        flex: 1 1 calc(50% - 5px);
+        min-width: 140px;
+        box-sizing: border-box;
+        padding-top: 0; /* Убираем старый отступ */
+        align-self: stretch; /* Растягиваем блок на всю высоту ячейки */
+    }
+
+
+    /* --- Панель действий --- */
+    .action-bar {
+        display: flex;
+        justify-content: center; /* Центрируем содержимое */
+        align-items: center;
+        gap: 8px; /* Уменьшаем расстояние между кнопками для мобильных */
+        
+        margin: 0; 
+        width: 100%;
+        padding: 12px 10px; /* Равномерный паддинг слева и справа */
+        
+        background-color: var(--sidebar-bg);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        
+        /* Убираем любые ограничения ширины, если они были */
+        max-width: 100%;
+        box-sizing: border-box; 
+    }
+
+    .action-bar-center {
+        display: flex; /* Вместо contents используем flex для надежности */
+        justify-content: center;
+        gap: 8px;
+        width: 100%; /* Занимает всю ширину, кнопки внутри центрируются через justify-content */
+    }
+
+    .action-bar .button {
+        padding: 8px 12px; /* Чуть компактнее */
+        font-size: 13px;    /* Чтобы три кнопки точно влезли в ряд на узких экранах */
+        margin: 0;          /* Сбрасываем дефолтные отступы браузера */
+        flex: 0 1 auto;     /* Не даем кнопкам растягиваться слишком сильно */
+        white-space: nowrap; /* Чтобы текст не переносился */
+    }
+
+    /* Скрываем подсказки о горячих клавишах на мобильных */
+    .hotkey-hint {
+        display: none;
+    }
+
+    /* Скрываем распорку и кнопку Fullscreen на мобильных */
+    .action-bar-left,
+    #fullscreen-button {
+        display: none;
+    }
+
+ 
+    /* --- Автор и инфо --- */
+    .author-credit.desktop-only {
+        display: none; /* Скрываем десктопную версию */
+    }
+
+    .author-credit.mobile-only {
+        display: block; /* Показываем мобильную версию */
+    }
+
+    .image-info {
+        top: 5px;
+        left: 5px;
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+
+    .drop-zone {
+        min-height: 300px; /* Минимальная высота для зоны загрузки */
+    }
+
+    /* --- Модальное окно на мобильных --- */
+    .warning-modal {
+        max-width: calc(100% - 40px); /* Оставляем отступы по 20px по бокам */
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .warning-buttons {
+        flex-direction: column; /* Кнопки друг под другом */
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    /* Для модального окна "About" на мобильных устройствах - объединяем стили */
+    .warning-modal.about-modal-content {
+        max-width: 400px; /* Ограничиваем максимальную ширину */
+        width: calc(100% - 40px); /* Добавляем отступы по 20px с каждой стороны */
+    }
+}
+
+/* --- Стили для модального окна "About" --- */
+.about-modal {
+    max-width: 600px;
+    text-align: left;
+    padding: 30px;
+}
+
+.about-modal h2 {
+    margin-top: 0;
+    font-size: 22px; /* Согласованный размер с .app-title */
+    color: var(--text-color);
+}
+
+.about-modal h3 {
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.about-modal p,
+.about-modal ul {
+    font-size: 15px;
+    color: var(--text-secondary-color);
+    line-height: 1.5;
+}
+
+.about-modal ul {
+    padding-left: 20px;
+    margin-top: 0;
+}
+
+.about-modal .warning-buttons {
+    justify-content: flex-end; /* Выравниваем кнопку "Close" по правому краю */
+}
+
+/* Стили для контента внутри модального окна "About" */
+.about-modal-content {
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    text-align: left;
+    padding: 30px;
+    line-height: 1.6;
+}
+
+/* Стили для футера модального окна "About" */
+.about-modal-footer {
+    margin-top: 30px;
+    padding-top: 10px; /* Небольшой отступ сверху */
+    text-align: right; /* Кнопка справа */
+}
+
+/* --- Стили для ссылки "About UnPlastic" --- */
+.about-link {
+    /* display: inline-block; убираем, так как flex-контейнер управляет этим */
+    /* margin-top: 5px; убираем, так как gap управляет отступом */
+    font-size: 12px;
+    color: var(--text-secondary-color);
+    text-decoration: underline;
+    text-align: center; /* Добавляем для надежности */
+}
+
+.about-link:hover {
+    color: var(--accent-color);
+}

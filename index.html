@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Базовые SEO теги -->
+    <title>UnPlastic | Remove "Plastic" Look from AI Images & Restore Skin Texture</title>
+    <meta name="description" content="Free online tool to fix the blurry, overly smooth, and plastic look of AI-generated images. Restore realistic micro-texture, skin pores, and depth directly in your browser.">
+    <meta name="keywords" content="AI image enhancer, remove plastic look AI, Z-Image-Turbo post-processing, fix AI skin texture, Midjourney post-processing, Stable Diffusion texture restorer, dehaze AI images, realistic film grain online, unblur AI photo, AI upscaler alternative">
+    <meta name="author" content="ThetaCursed">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (Facebook, Discord, LinkedIn, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="UnPlastic - Make AI Images Look Photographic">
+    <meta property="og:description" content="Peel away the synthetic AI look. Our advanced web engine restores lost micro-details, skin texture, and natural grain to rescue over-smoothed AI photos.">
+    <meta property="og:url" content="https://thetacursed.github.io/unplastic/">
+    <meta property="og:image" content="https://thetacursed.github.io/unplastic/app/images/preview-ui.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UnPlastic - Remove the 'Plastic' AI Look">
+    <meta name="twitter:description" content="Transform synthetic AI generations into realistic photographic images. Enhance structure and micro-texture with zero server uploads.">
+    <meta name="twitter:image" content="https://thetacursed.github.io/unplastic/app/images/preview-ui.png">
+    
+    <!-- Каноническая ссылка -->
+    <link rel="canonical" href="https://thetacursed.github.io/unplastic/">
+
+    <link rel="stylesheet" href="app/style.css">
+    <!-- Schema.org SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "UnPlastic",
+      "url": "https://thetacursed.github.io/unplastic/",
+      "description": "A high-performance web application designed to remove the synthetic, plastic, and blurry aesthetic often found in AI-generated images from models like Z-Image-Turbo, Qwen-Image, Midjourney, and Stable Diffusion. Powered by a custom WebAssembly engine, it safely restores skin texture and micro-details without introducing unwanted artifacts.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "ThetaCursed",
+        "url": "https://github.com/ThetaCursed"
+      },
+      "featureList": [
+        "Micro-Texture recovery using proprietary detail-extraction algorithms.",
+        "Structure enhancement designed specifically for flat, over-smoothed AI areas.",
+        "Organic, luminance-responsive film grain simulation.",
+        "Intelligent edge-protection to prevent haloing around high-contrast subjects.",
+        "100% local, secure processing powered by high-speed WebAssembly (WASM)."
+      ]
+    }
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Боковая панель с ползунками -->
+        <aside class="sidebar">
+    <div class="app-header">
+        <h1 class="app-title">UnPlastic</h1>
+        <p class="app-slogan">Peel away the synthetic look</p>
+    </div>
+    <div class="controls-wrapper">
+        <div class="controls-group">
+            <h3 class="group-title">TEXTURE & LOOK</h3>
+            <div class="control">
+                <div class="control-label">
+                    <div class="label-wrapper"><label for="micro-texture" class="slider-label">Micro-Texture</label><a href="#" class="reset-btn" data-slider-id="micro-texture">Reset</a></div>
+                    <input type="number" class="control-value" id="micro-texture-value" value="0" min="0" max="100">
+                </div>
+                <input type="range" id="micro-texture" min="0" max="100" value="0">
+            </div>
+            <div class="control">
+                <div class="control-label">
+                    <div class="label-wrapper"><label for="structure" class="slider-label">Structure</label><a href="#" class="reset-btn" data-slider-id="structure">Reset</a></div>
+                    <input type="number" class="control-value" id="structure-value" value="0" min="0" max="100">
+                </div>
+                <input type="range" id="structure" min="0" max="100" value="0">
+            </div>
+            <div class="control">
+                <div class="control-label">
+                    <div class="label-wrapper"><label for="unveil" class="slider-label">Unveil</label><a href="#" class="reset-btn" data-slider-id="unveil">Reset</a></div>
+                    <input type="number" class="control-value" id="unveil-value" value="0" min="0" max="100">
+                </div>
+                <input type="range" id="unveil" min="0" max="100" value="0">
+            </div>
+            <div class="control">
+                <div class="control-label">
+                    <div class="label-wrapper"><label for="grit" class="slider-label">Grit</label><a href="#" class="reset-btn" data-slider-id="grit">Reset</a></div>
+                    <input type="number" class="control-value" id="grit-value" value="0" min="0" max="100">
+                </div>
+                <input type="range" id="grit" min="0" max="100" value="0">
+            </div>
+        </div>
+
+        <div class="controls-group">
+            <h3 class="group-title">TONAL BALANCE</h3>
+            <div class="control">
+                <div class="control-label">
+                    <div class="label-wrapper"><label for="highlights" class="slider-label">Highlights</label><a href="#" class="reset-btn" data-slider-id="highlights">Reset</a></div>
+                    <input type="number" class="control-value" id="highlights-value" value="0" min="-100" max="100">
+                </div>
+                <input type="range" id="highlights" min="-100" max="100" value="0">
+            </div>
+            <div class="control">
+                <div class="control-label">
+                    <div class="label-wrapper"><label for="shadows" class="slider-label">Shadows</label><a href="#" class="reset-btn" data-slider-id="shadows">Reset</a></div>
+                    <input type="number" class="control-value" id="shadows-value" value="0" min="-100" max="100">
+                </div>
+                <input type="range" id="shadows" min="-100" max="100" value="0">
+            </div>
+        </div>
+        <div class="reset-all-container">
+            <button id="reset-all-button" class="button button-tertiary">Reset All <span class="hotkey-hint">(R)</span></button>
+            <a href="#" id="open-about-modal" class="about-link">About UnPlastic</a>
+        </div>
+    </div>
+    <div class="author-credit mobile-only">
+        Created by <a href="https://github.com/ThetaCursed" target="_blank" rel="noopener noreferrer">ThetaCursed</a>
+    </div>
+</aside>
+
+        <!-- Основная область для изображения -->
+        <main class="main-content">
+            <div id="image-info" class="image-info hidden"></div>
+            <div class="author-credit desktop-only">
+                Created by <a href="https://github.com/ThetaCursed" target="_blank">ThetaCursed</a>
+            </div>
+            <div id="drop-zone" class="drop-zone">
+                <div id="image-placeholder">
+                    <canvas id="image-canvas" class="hidden"></canvas>
+                    <div id="upload-prompt">
+                        <p class="upload-prompt-text">Drag & drop an image or</p>
+                        <button id="upload-button" class="button">Choose a file</button>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                    </div>
+                </div>
+            </div>
+            <!-- Панель с кнопками действий -->
+            <div id="action-bar" class="action-bar hidden">
+                <div class="action-bar-left"></div> <!-- Пустая распорка слева -->
+                <div class="action-bar-center">
+                    <button id="compare-button" class="button secondary">Compare <span class="hotkey-hint">(C)</span></button>
+                    <button id="download-button" class="button">Save Image <span class="hotkey-hint">(S)</span></button>
+                    <button id="close-button" class="button button-tertiary">Close <span class="hotkey-hint">(Esc)</span></button>
+                </div>
+                <button id="fullscreen-button" class="button button-tertiary">Fullscreen <span class="hotkey-hint">(F)</span></button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно с предупреждением -->
+    <div id="warning-overlay" class="warning-overlay hidden">
+        <div class="warning-modal">
+            <h3>Large Image Warning</h3>
+            <p>For the best performance and a smooth experience, it's recommended to use images smaller than 2048x2048 pixels. Processing larger images may be slow.</p>
+            <div class="warning-buttons">
+                <button id="warning-continue" class="button">Continue Anyway</button>
+                <button id="warning-cancel" class="button secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно About / SEO Content -->
+    <div id="about-overlay" class="warning-overlay hidden">
+        <div class="warning-modal about-modal-content">
+            
+            <h2 style="margin-top: 0; color: #fff;">About UnPlastic: Restoring Realism to AI Art</h2>
+            <p style="color: #ccc;"><strong>UnPlastic</strong> is a free, high-performance web tool specifically designed to fix the common flaws of AI-generated images. Whether you use Z-Image-Turbo, Qwen-Image, Midjourney, Stable Diffusion, or DALL-E, AI models often produce portraits and landscapes with an overly smooth, blurry texture. UnPlastic peels away this synthetic, "plastic look," restoring a natural, photographic feel to your generations.</p>
+            
+            <h3 style="color: #fff; margin-top: 25px;">The Problem with AI Image Textures</h3>
+            <p style="color: #ccc;">While generative AI is incredible at composition, it frequently struggles with micro-details. Skin looks like plastic, fabrics lack weaves, and shadows become flat gradients. Traditional photo editors try to fix this with basic "Unsharp Mask" or "Clarity" filters, which usually destroy the image by creating ugly white halos around edges and exaggerating digital artifacts.</p>
+
+            <h3 style="color: #fff; margin-top: 25px;">How UnPlastic Fixes It</h3>
+            <p style="color: #ccc;">UnPlastic uses a custom-built processing engine tailored for AI art, focusing on smart detail recovery:</p>
+            <ul style="color: #ccc; padding-left: 20px;">
+                <li style="margin-bottom: 10px;"><strong>Intelligent Micro-Texture Recovery:</strong> Our algorithms separate image frequencies to safely extract and enhance micro-details (like skin pores, dirt, and fabric) while strictly protecting high-contrast edges from haloing.</li>
+                <li style="margin-bottom: 10px;"><strong>Organic Adaptive Grain (Grit):</strong> Static noise overlays look cheap. UnPlastic generates dynamic, luminance-responsive digital grain that mimics real camera sensors. It naturally blends into shadows to break up artificial AI gradients.</li>
+                <li style="margin-bottom: 10px;"><strong>Depth & Structure Restoration:</strong> Eliminate the flat "AI haze" and restore natural 3D volume to faces and environments with deep mid-tone contrast adjustments.</li>
+            </ul>
+
+            <h3 style="color: #fff; margin-top: 25px;">100% Private, Local & Secure</h3>
+            <p style="color: #ccc;">Your privacy is guaranteed. UnPlastic is a completely client-side application running on the HTML5 Canvas API and WebAssembly. <strong>Your images never leave your device and are never uploaded to any server.</strong> Enjoy lightning-fast, desktop-level post-processing directly in your browser.</p>
+            
+            <!-- Кнопка закрытия -->
+            <div class="about-modal-footer">
+                <button id="close-about-btn" class="button">Got it, let's go!</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app/app.js"></script>
+</body>
+</html>
