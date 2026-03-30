@@ -1,6 +1,6 @@
 # 📷 UnPlastic: Peel Away the Synthetic AI Look
 
-![UnPlastic App UI](preview-ui.png)
+![UnPlastic App UI](app\images\preview-ui.png)
 
 **UnPlastic** is a high-performance, completely browser-based post-processing tool designed to fix the common flaws of AI-generated images (Z-Image-Turbo, Qwen-Image, Midjourney, Stable Diffusion). It mathematically retrieves lost micro-details, eliminates the "plastic" skin texture, and restores a photographic feel to your generations.
 
