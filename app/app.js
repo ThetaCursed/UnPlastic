@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isCurrentlyInDemo = false; // Флаг, показывающий, что сейчас активно демо-изображение
         // --- Инициализация защищенного Wasm-воркера ---
-    const filterWorker = new Worker('worker.js', { type: 'module' });
+    const filterWorker = new Worker('app/worker.js', { type: 'module' });
     let isWorkerReady = false;
     let isWorkerBusy = false; // Флаг: занят ли сейчас воркер
     let nextParams = null;    // Хранит параметры, если юзер двигал ползунок, пока воркер был занят
