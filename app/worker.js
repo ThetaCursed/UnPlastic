@@ -1,5 +1,5 @@
 // Импортируем обертку, сгенерированную wasm-pack
-import init, { process_data } from './wasm/wasm_image_processor.js';
+import init, { process_data } from '../wasm/wasm_image_processor.js';
 
 let wasmReady = false;
 
