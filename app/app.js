@@ -767,7 +767,7 @@ function waitForWorkerAndApplyFilters() {
                 proceedWithImage(demoImage, mockFile, true);
             };
             demoImage.onerror = () => console.error("Could not load the demo image.");
-            demoImage.src = 'images/example.png';
+            demoImage.src = './images/example.png';
         } else {
             // Повторный визит: просто загружаем сохраненные значения ползунков
             loadSliderValues();
